@@ -1,0 +1,299 @@
+[
+  {
+    "_id": "col_quickgpt_api",
+    "colName": "QuickGPT API Tests",
+    "created": "2026-01-27T00:00:00.000Z",
+    "sortNum": 10000,
+    "folders": [
+      {
+        "_id": "fld_user",
+        "name": "User Routes",
+        "containerId": "",
+        "created": "2026-01-27T00:00:00.000Z",
+        "sortNum": 10000
+      },
+      {
+        "_id": "fld_chat",
+        "name": "Chat Routes",
+        "containerId": "",
+        "created": "2026-01-27T00:00:00.000Z",
+        "sortNum": 20000
+      },
+      {
+        "_id": "fld_message",
+        "name": "Message Routes",
+        "containerId": "",
+        "created": "2026-01-27T00:00:00.000Z",
+        "sortNum": 30000
+      },
+      {
+        "_id": "fld_credit",
+        "name": "Credit Routes",
+        "containerId": "",
+        "created": "2026-01-27T00:00:00.000Z",
+        "sortNum": 40000
+      }
+    ],
+    "requests": [
+      {
+        "_id": "req_home",
+        "colId": "col_quickgpt_api",
+        "containerId": "",
+        "name": "Home - Server Status",
+        "url": "http://localhost:3000/",
+        "method": "GET",
+        "sortNum": 5000,
+        "created": "2026-01-27T00:00:00.000Z",
+        "modified": "2026-01-27T00:00:00.000Z",
+        "headers": [],
+        "params": [],
+        "tests": []
+      },
+      {
+        "_id": "req_register",
+        "colId": "col_quickgpt_api",
+        "containerId": "fld_user",
+        "name": "Register User",
+        "url": "http://localhost:3000/api/user/register",
+        "method": "POST",
+        "sortNum": 10000,
+        "created": "2026-01-27T00:00:00.000Z",
+        "modified": "2026-01-27T00:00:00.000Z",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "params": [],
+        "body": {
+          "type": "json",
+          "raw": "{\n  \"name\": \"Test User\",\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\"\n}",
+          "form": []
+        },
+        "tests": []
+      },
+      {
+        "_id": "req_login",
+        "colId": "col_quickgpt_api",
+        "containerId": "fld_user",
+        "name": "Login User",
+        "url": "http://localhost:3000/api/user/login",
+        "method": "POST",
+        "sortNum": 20000,
+        "created": "2026-01-27T00:00:00.000Z",
+        "modified": "2026-01-27T00:00:00.000Z",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "params": [],
+        "body": {
+          "type": "json",
+          "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\"\n}",
+          "form": []
+        },
+        "tests": []
+      },
+      {
+        "_id": "req_get_user",
+        "colId": "col_quickgpt_api",
+        "containerId": "fld_user",
+        "name": "Get User Data (Protected)",
+        "url": "http://localhost:3000/api/user/data",
+        "method": "GET",
+        "sortNum": 30000,
+        "created": "2026-01-27T00:00:00.000Z",
+        "modified": "2026-01-27T00:00:00.000Z",
+        "headers": [
+          {
+            "name": "Authorization",
+            "value": "Bearer YOUR_JWT_TOKEN_HERE"
+          }
+        ],
+        "params": [],
+        "tests": []
+      },
+      {
+        "_id": "req_published_images",
+        "colId": "col_quickgpt_api",
+        "containerId": "fld_user",
+        "name": "Get Published Images",
+        "url": "http://localhost:3000/api/user/published-images",
+        "method": "GET",
+        "sortNum": 40000,
+        "created": "2026-01-27T00:00:00.000Z",
+        "modified": "2026-01-27T00:00:00.000Z",
+        "headers": [],
+        "params": [],
+        "tests": []
+      },
+      {
+        "_id": "req_create_chat",
+        "colId": "col_quickgpt_api",
+        "containerId": "fld_chat",
+        "name": "Create Chat (Protected)",
+        "url": "http://localhost:3000/api/chat/create",
+        "method": "GET",
+        "sortNum": 50000,
+        "created": "2026-01-27T00:00:00.000Z",
+        "modified": "2026-01-27T00:00:00.000Z",
+        "headers": [
+          {
+            "name": "Authorization",
+            "value": "Bearer YOUR_JWT_TOKEN_HERE"
+          }
+        ],
+        "params": [],
+        "tests": []
+      },
+      {
+        "_id": "req_get_chats",
+        "colId": "col_quickgpt_api",
+        "containerId": "fld_chat",
+        "name": "Get Chats (Protected)",
+        "url": "http://localhost:3000/api/chat/get",
+        "method": "GET",
+        "sortNum": 60000,
+        "created": "2026-01-27T00:00:00.000Z",
+        "modified": "2026-01-27T00:00:00.000Z",
+        "headers": [
+          {
+            "name": "Authorization",
+            "value": "Bearer YOUR_JWT_TOKEN_HERE"
+          }
+        ],
+        "params": [],
+        "tests": []
+      },
+      {
+        "_id": "req_delete_chat",
+        "colId": "col_quickgpt_api",
+        "containerId": "fld_chat",
+        "name": "Delete Chat (Protected)",
+        "url": "http://localhost:3000/api/chat/delete",
+        "method": "POST",
+        "sortNum": 70000,
+        "created": "2026-01-27T00:00:00.000Z",
+        "modified": "2026-01-27T00:00:00.000Z",
+        "headers": [
+          {
+            "name": "Authorization",
+            "value": "Bearer YOUR_JWT_TOKEN_HERE"
+          },
+          {
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "params": [],
+        "body": {
+          "type": "json",
+          "raw": "{\n  \"chatId\": \"YOUR_CHAT_ID_HERE\"\n}",
+          "form": []
+        },
+        "tests": []
+      },
+      {
+        "_id": "req_text_message",
+        "colId": "col_quickgpt_api",
+        "containerId": "fld_message",
+        "name": "Send Text Message (Protected)",
+        "url": "http://localhost:3000/api/message/text",
+        "method": "POST",
+        "sortNum": 80000,
+        "created": "2026-01-27T00:00:00.000Z",
+        "modified": "2026-01-27T00:00:00.000Z",
+        "headers": [
+          {
+            "name": "Authorization",
+            "value": "Bearer YOUR_JWT_TOKEN_HERE"
+          },
+          {
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "params": [],
+        "body": {
+          "type": "json",
+          "raw": "{\n  \"chatId\": \"YOUR_CHAT_ID_HERE\",\n  \"message\": \"Hello, how are you?\"\n}",
+          "form": []
+        },
+        "tests": []
+      },
+      {
+        "_id": "req_image_message",
+        "colId": "col_quickgpt_api",
+        "containerId": "fld_message",
+        "name": "Send Image Message (Protected)",
+        "url": "http://localhost:3000/api/message/image",
+        "method": "POST",
+        "sortNum": 90000,
+        "created": "2026-01-27T00:00:00.000Z",
+        "modified": "2026-01-27T00:00:00.000Z",
+        "headers": [
+          {
+            "name": "Authorization",
+            "value": "Bearer YOUR_JWT_TOKEN_HERE"
+          },
+          {
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "params": [],
+        "body": {
+          "type": "json",
+          "raw": "{\n  \"chatId\": \"YOUR_CHAT_ID_HERE\",\n  \"prompt\": \"A beautiful sunset over mountains\"\n}",
+          "form": []
+        },
+        "tests": []
+      },
+      {
+        "_id": "req_get_plans",
+        "colId": "col_quickgpt_api",
+        "containerId": "fld_credit",
+        "name": "Get Credit Plans",
+        "url": "http://localhost:3000/api/credit/plan",
+        "method": "GET",
+        "sortNum": 100000,
+        "created": "2026-01-27T00:00:00.000Z",
+        "modified": "2026-01-27T00:00:00.000Z",
+        "headers": [],
+        "params": [],
+        "tests": []
+      },
+      {
+        "_id": "req_purchase_plan",
+        "colId": "col_quickgpt_api",
+        "containerId": "fld_credit",
+        "name": "Purchase Plan (Protected)",
+        "url": "http://localhost:3000/api/credit/purchase",
+        "method": "POST",
+        "sortNum": 110000,
+        "created": "2026-01-27T00:00:00.000Z",
+        "modified": "2026-01-27T00:00:00.000Z",
+        "headers": [
+          {
+            "name": "Authorization",
+            "value": "Bearer YOUR_JWT_TOKEN_HERE"
+          },
+          {
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "params": [],
+        "body": {
+          "type": "json",
+          "raw": "{\n  \"planId\": \"PLAN_ID_HERE\"\n}",
+          "form": []
+        },
+        "tests": []
+      }
+    ]
+  }
+]

@@ -1,0 +1,41 @@
+/* Styles for the Credits / Plans page */
+.credits-page {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 18px;
+  font-family: 'Outfit', sans-serif;
+}
+.credits-header h2 {
+  margin: 0 0 6px 0;
+  font-size: 1.5rem;
+}
+.credits-header .muted { color: #6b7280; margin-bottom:12px }
+
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+  margin-top: 12px;
+}
+.plan-card {
+  padding: 16px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid #eef2f7;
+  box-shadow: 0 6px 18px rgba(16,24,40,0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.plan-card:hover { transform: translateY(-6px); box-shadow: 0 10px 30px rgba(16,24,40,0.06); }
+.plan-header { display:flex; justify-content:space-between; align-items:center }
+.plan-name { margin:0; font-weight:700 }
+.plan-price { background: linear-gradient(90deg,#a78bfa,#60a5fa); color:#fff; padding:6px 10px; border-radius:8px; font-weight:700 }
+.plan-credits { color:#374151 }
+.plan-features { margin: 0; padding-left: 18px; color:#374151 }
+.plan-features li { margin:6px 0 }
+.plan-actions { margin-top: auto }
+.btn-primary { background:#2563eb; color:#fff; border:none; padding:8px 12px; border-radius:8px; cursor:pointer }
+.btn-primary:hover { background:#1e40af }
+
+.muted { color:#6b7280 }
