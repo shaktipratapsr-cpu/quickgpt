@@ -1,14 +1,10 @@
 import React, { use, useState } from 'react'
-import Sidebar from './components/Sidebar.jsx'
+import { Sidebar, ChatBox } from './components'
 import { Route, Routes, useLocation } from 'react-router-dom'
-import ChatBox from './components/ChatBox.jsx'
-import Credits from './pages/Credits.jsx'
-import Community from './pages/Community.jsx'
+import { Credits, Community, Loading, Login } from './pages'
 import { assets } from './assets/assets'
 import './assets/prism.css'
-import Loading from './pages/Loading.jsx'
 import { useAppContext } from './context/AppContext.jsx'
-import Login from './pages/Login.jsx'
 import {Toaster} from 'react-hot-toast'
 
 const App = () => {
