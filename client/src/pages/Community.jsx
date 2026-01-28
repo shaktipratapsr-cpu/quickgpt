@@ -1,30 +1,53 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import galleryIcon from '../assets/gallery_icon.svg';
-import './Community.css';
+import React, { useEffect, useState } from 'react'
+import { dummyPublishedImages } from '../assets/assets'
+import Loading from './Loading'
+import { useAppContext } from '../context/AppContext'
+import toast from 'react-hot-toast'
 
-const Community = ({ gallery = [] }) => {
-  const items = gallery.length ? gallery : new Array(8).fill(0).map((_, i) => ({ id: i + 1 }));
+const Community = () => {
+
+  const [images, setImages] = useState([])
+  const [loading, setLoading] = useState(true)
+  const { axios } = useAppContext()
+
+  const fetchImages = async () => {
+    try {
+      const {data} = await axios.get('/api/user/published-images')
+      if (data.success) {
+        setImages(data.images)
+      }else{
+        toast.error(data.message)
+      }
+    } catch (error) {
+      toast.error(error.message)
+    }
+    setLoading(false)
+  }
+
+  useEffect(()=>{
+    fetchImages()
+  },[])
+
+  if(loading) return <Loading />
 
   return (
-    <div className="community-page">
-      <div className="community-header">
-        <h2>Community Images</h2>
-        <p className="muted">Browse community shared images</p>
-      </div>
+    <div className='p-6 pt-12 xl:px-12 2xl:px-20 w-full mx-auto h-full overflow-y-scroll'>
+      <h2 className='text-xl font-semibold mb-6 text-gray-800 dark:text-purple-100'>Community Images</h2>
 
-      <div className="community-grid">
-        {items.map((item, idx) => (
-          <Link to={`/community/gallery/${item.id || idx + 1}`} className="community-card" key={item.id || idx}>
-            <div className="community-card-image">
-              {item.src ? <img src={item.src} alt={`img-${item.id || idx}`} /> : <img src={galleryIcon} alt={`img-${item.id || idx}`} />}
-            </div>
-            <div className="community-card-title">{item.id ? `Community Image ${item.id}` : `Community Image #${idx + 1}`}</div>
-          </Link>
-        ))}
-      </div>
+      {images.length > 0 ? (
+        <div className='flex flex-wrap max-sm:justify-center gap-5'>
+          {images.map((item, index)=>(
+            <a key={index} href={item.imageUrl} target='_blank' className='relative group block rounded-lg overflow-hidden border border-gray-200 dark:border-purple-700 shadow-sm hover:shadow-md transition-shadow duration-300'>
+              <img src={item.imageUrl} alt="" className='w-full h-40 md:h-50 2xl:h-62 object-cover group-hover:scale-105 transition-transform duration-300 ease-in-out'/>
+              <p className='absolute bottom-0 right-0 text-xs bg-black/50 backdrop-blur text-white px-4 py-1 rounded-tl-xl opacity-0 group-hover:opacity-100 transition duration-300'>Created by {item.userName}</p>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <p className='text-center text-gray-600 dark:text-purple-200 mt-10'>No images Available.</p>
+      )}
     </div>
-  );
-};
+  )
+}
 
-export default Community;
+export default Community
