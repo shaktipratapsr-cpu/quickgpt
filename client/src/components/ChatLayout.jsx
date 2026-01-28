@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import logoLight from '../assets/logo.svg';
 import logoDark from '../assets/logo.svg';
-import ChatInput from './ChatInput.jsx';
-import MessageBubble from './MessageBubble.jsx';
+import ChatInput from './ChatInput';
+import MessageBubble from './MessageBubble';
 import './Chat.css';
 
 const ChatLayout = ({ theme, chatId, messages = [], onSendMessage, onCreateChat, onShareImage }) => {

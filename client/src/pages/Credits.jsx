@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { dummyPlans } from '../assets/assets.js'
-import Loading from './Loading.jsx'
-import { useAppContext } from '../context/AppContext.jsx'
+import { dummyPlans } from '../assets/assets'
+import Loading from './Loading'
+import { useAppContext } from '../context/AppContext'
 import toast from 'react-hot-toast'
 
 const Credits = () => {
