@@ -16,16 +16,19 @@ await connectDB()
 app.post('/api/stripe', express.raw({type: 'application/json'}), stripeWebhooks)
 
 // Middleware
-// CORS configuration for development
+// CORS configuration for development and production
 const corsOptions = {
   origin: [
     'http://localhost:5173',  // Vite dev server default port
     'http://localhost:3000',  // Fallback
     'http://127.0.0.1:5173',
-    process.env.FRONTEND_URL  // Production frontend URL
+    process.env.FRONTEND_URL,  // Production frontend URL
+    'https://quickgpt-4j5q.onrender.com', // Add your actual Render frontend URL
+    /\.onrender\.com$/, // Allow all Render subdomains
+    /\.vercel\.app$/    // Allow all Vercel subdomains
   ],
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 };
 
