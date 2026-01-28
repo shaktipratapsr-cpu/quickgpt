@@ -1,4 +1,4 @@
-export { default as Sidebar } from './Sidebar.jsx'
+export { default as Sidebar } from './SideBar.jsx'
 export { default as ChatBox } from './ChatBox.jsx'
 export { default as Message } from './Message.jsx'
 export { default as ChatInput } from './ChatInput.jsx'
