@@ -95,14 +95,21 @@
           "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\"\n}",
           "form": []
         },
-        "tests": []
+        "tests": [
+          {
+            "type": "set-env-var",
+            "custom": "json.token",
+            "action": "setto",
+            "value": "{{jwtToken}}"
+          }
+        ]
       },
       {
         "_id": "req_get_user",
         "colId": "col_quickgpt_api",
         "containerId": "fld_user",
         "name": "Get User Data (Protected)",
-        "url": "http://localhost:3000/api/user/data",
+        "url": "{{baseUrl}}/api/user/data",
         "method": "GET",
         "sortNum": 30000,
         "created": "2026-01-27T00:00:00.000Z",
@@ -110,7 +117,7 @@
         "headers": [
           {
             "name": "Authorization",
-            "value": "Bearer YOUR_JWT_TOKEN_HERE"
+            "value": "Bearer {{jwtToken}}"
           }
         ],
         "params": [],
@@ -135,7 +142,7 @@
         "colId": "col_quickgpt_api",
         "containerId": "fld_chat",
         "name": "Create Chat (Protected)",
-        "url": "http://localhost:3000/api/chat/create",
+        "url": "{{baseUrl}}/api/chat/create",
         "method": "GET",
         "sortNum": 50000,
         "created": "2026-01-27T00:00:00.000Z",
@@ -143,18 +150,25 @@
         "headers": [
           {
             "name": "Authorization",
-            "value": "Bearer YOUR_JWT_TOKEN_HERE"
+            "value": "Bearer {{jwtToken}}"
           }
         ],
         "params": [],
-        "tests": []
+        "tests": [
+          {
+            "type": "set-env-var",
+            "custom": "json.chatId",
+            "action": "setto",
+            "value": "{{chatId}}"
+          }
+        ]
       },
       {
         "_id": "req_get_chats",
         "colId": "col_quickgpt_api",
         "containerId": "fld_chat",
         "name": "Get Chats (Protected)",
-        "url": "http://localhost:3000/api/chat/get",
+        "url": "{{baseUrl}}/api/chat/get",
         "method": "GET",
         "sortNum": 60000,
         "created": "2026-01-27T00:00:00.000Z",
@@ -162,7 +176,7 @@
         "headers": [
           {
             "name": "Authorization",
-            "value": "Bearer YOUR_JWT_TOKEN_HERE"
+            "value": "Bearer {{jwtToken}}"
           }
         ],
         "params": [],
@@ -173,7 +187,7 @@
         "colId": "col_quickgpt_api",
         "containerId": "fld_chat",
         "name": "Delete Chat (Protected)",
-        "url": "http://localhost:3000/api/chat/delete",
+        "url": "{{baseUrl}}/api/chat/delete",
         "method": "POST",
         "sortNum": 70000,
         "created": "2026-01-27T00:00:00.000Z",
@@ -181,7 +195,7 @@
         "headers": [
           {
             "name": "Authorization",
-            "value": "Bearer YOUR_JWT_TOKEN_HERE"
+            "value": "Bearer {{jwtToken}}"
           },
           {
             "name": "Content-Type",
@@ -191,7 +205,7 @@
         "params": [],
         "body": {
           "type": "json",
-          "raw": "{\n  \"chatId\": \"YOUR_CHAT_ID_HERE\"\n}",
+          "raw": "{\n  \"chatId\": \"{{chatId}}\"\n}",
           "form": []
         },
         "tests": []
@@ -201,7 +215,7 @@
         "colId": "col_quickgpt_api",
         "containerId": "fld_message",
         "name": "Send Text Message (Protected)",
-        "url": "http://localhost:3000/api/message/text",
+        "url": "{{baseUrl}}/api/message/text",
         "method": "POST",
         "sortNum": 80000,
         "created": "2026-01-27T00:00:00.000Z",
@@ -209,7 +223,7 @@
         "headers": [
           {
             "name": "Authorization",
-            "value": "Bearer YOUR_JWT_TOKEN_HERE"
+            "value": "Bearer {{jwtToken}}"
           },
           {
             "name": "Content-Type",
@@ -219,7 +233,7 @@
         "params": [],
         "body": {
           "type": "json",
-          "raw": "{\n  \"chatId\": \"YOUR_CHAT_ID_HERE\",\n  \"message\": \"Hello, how are you?\"\n}",
+          "raw": "{\n  \"chatId\": \"{{chatId}}\",\n  \"prompt\": \"What is the capital of France?\"\n}",
           "form": []
         },
         "tests": []
@@ -229,7 +243,7 @@
         "colId": "col_quickgpt_api",
         "containerId": "fld_message",
         "name": "Send Image Message (Protected)",
-        "url": "http://localhost:3000/api/message/image",
+        "url": "{{baseUrl}}/api/message/image",
         "method": "POST",
         "sortNum": 90000,
         "created": "2026-01-27T00:00:00.000Z",
@@ -237,7 +251,7 @@
         "headers": [
           {
             "name": "Authorization",
-            "value": "Bearer YOUR_JWT_TOKEN_HERE"
+            "value": "Bearer {{jwtToken}}"
           },
           {
             "name": "Content-Type",
@@ -247,7 +261,7 @@
         "params": [],
         "body": {
           "type": "json",
-          "raw": "{\n  \"chatId\": \"YOUR_CHAT_ID_HERE\",\n  \"prompt\": \"A beautiful sunset over mountains\"\n}",
+          "raw": "{\n  \"chatId\": \"{{chatId}}\",\n  \"prompt\": \"A beautiful sunset over mountains\",\n  \"isPublished\": false\n}",
           "form": []
         },
         "tests": []
@@ -271,7 +285,7 @@
         "colId": "col_quickgpt_api",
         "containerId": "fld_credit",
         "name": "Purchase Plan (Protected)",
-        "url": "http://localhost:3000/api/credit/purchase",
+        "url": "{{baseUrl}}/api/credit/purchase",
         "method": "POST",
         "sortNum": 110000,
         "created": "2026-01-27T00:00:00.000Z",
@@ -279,7 +293,7 @@
         "headers": [
           {
             "name": "Authorization",
-            "value": "Bearer YOUR_JWT_TOKEN_HERE"
+            "value": "Bearer {{jwtToken}}"
           },
           {
             "name": "Content-Type",

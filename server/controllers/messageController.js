@@ -2,7 +2,7 @@ import axios from "axios"
 import Chat from "../models/Chat.js"
 import User from "../models/User.js"
 import imagekit from "../configs/imageKit.js"
-import genAI from '../configs/openai.js'
+import groq from '../configs/openai.js'
 
 
 // Text-based AI Chat Message Controller
@@ -20,10 +20,21 @@ export const textMessageController = async (req, res) => {
         const chat = await Chat.findOne({userId, _id: chatId})
         chat.messages.push({role: "user", content: prompt, timestamp: Date.now(), isImage: false})
 
-        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-        const result = await model.generateContent(prompt);
-        const response = result.response;
-        const text = response.text();
+        // Convert chat messages to Groq format
+        const messages = chat.messages.map(msg => ({
+            role: msg.role,
+            content: msg.content
+        }));
+
+        // Using Groq API for chat completion
+        const response = await groq.chat.completions.create({
+            model: 'llama-3.3-70b-versatile',
+            messages: messages,
+            temperature: 0.7,
+            max_tokens: 500
+        });
+
+        const text = response.choices[0].message.content;
 
         const reply = {role: "assistant", content: text, timestamp: Date.now(), isImage: false}
         res.json({success: true, reply})

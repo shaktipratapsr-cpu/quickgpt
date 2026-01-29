@@ -3,6 +3,9 @@ import { createChat, deleteChat, getChats } from "../controllers/chatController.
 import { protect } from "../middlewares/auth.js";
 
 const chatRouter = express.Router();
+chatRouter.post("/", async (req, res) => {
+  res.json({ reply: "Chat API working" });
+});
 
 chatRouter.get('/create',protect, createChat)
 chatRouter.get('/get',protect, getChats)
